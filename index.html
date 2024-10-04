@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.IO Notifications</title>
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"></script>
+    <script>
+        // Conexión a Socket.IO
+        const socket = io('http://localhost:3000'); // Cambia esto a la URL de tu servidor WebSocket
+
+        // Se une al canal específico de notificaciones
+        const channel = 'notificationsescuela11'; // Cambia esto al canal que desees
+        socket.emit('subscribe', channel); // Suscribirse al canal
+
+        // Escuchar eventos de notificación
+        socket.on('notification', function(data) {
+            console.log("Notificación recibida:", data);
+            alert(data.title + ': ' + data.body); // Mostrar la notificación en un alert (puedes mejorar esto)
+        });
+    </script>
+</head>
+<body>
+    <h1>Servidor de Notificaciones Socket.IO</h1>
+    <p>Abre la consola del navegador para ver las notificaciones.</p>
+</body>
+</html>
